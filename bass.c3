@@ -440,7 +440,7 @@ const BASS_3DALG_LIGHT	=3;
 const SAMCHAN_NEW		=1;	// get a new playback channel
 const SAMCHAN_STREAM		=2;	// create a stream
 
-def StreamProc=fn ulong (uint handle, void *buffer, uint length, void *user);
+alias StreamProc=fn ulong (uint handle, void *buffer, uint length, void *user);
 /* User stream callback function.
 handle : The stream that needs writing
 buffer : Buffer to write the samples in
@@ -462,10 +462,10 @@ const STREAMFILE_BUFFER		=1;
 const STREAMFILE_BUFFERPUSH	=2;
 
 // User file stream callback functions
-def FileCloseProc= fn void (void *user);
-def FileLenProc=fn ulong(void *user);
-def FileReadProc=fn uint(void *buffer, uint length, void *user);
-def FileSeekProc=fn bool(ulong offset, void *user);
+alias FileCloseProc= fn void (void *user);
+alias FileLenProc=fn ulong(void *user);
+alias FileReadProc=fn uint(void *buffer, uint length, void *user);
+alias FileSeekProc=fn bool(ulong offset, void *user);
 
 struct Bass_FileProc{
 	FileCloseProc *close;
@@ -492,7 +492,7 @@ const FILEPOS_SIZE		=8;
 const FILEPOS_BUFFERING	=9;
 const FILEPOS_AVAILABLE	=10;
 
-def DownloadProc=fn  void(void *buffer, uint length, void *user);
+alias DownloadProc=fn  void(void *buffer, uint length, void *user);
 /* Internet stream download callback function.
 buffer : Buffer containing the downloaded data... NULL=end of download
 length : Number of bytes in the buffer
@@ -518,14 +518,14 @@ const SYNC_MIXTIME		=0x40000000	;// flag: sync at mixtime, else at playtime
 const SYNC_ONETIME		=0x80000000;	// flag: sync only once, else continuously
 
 
-def SyncProc=fn void(uint handle, uint channel, uint data, void *user);
+alias SyncProc=fn void(uint handle, uint channel, uint data, void *user);
 /* Sync callback function.
 handle : The sync that has occured
 channel: Channel that the sync occured in
 data   : Additional data associated with the sync's occurance
 user   : The 'user' parameter given when calling ChannelSetSync */
 
-def DspProc=fn void(uint handle, uint channel, void *buffer, uint length, void *user);
+alias DspProc=fn void(uint handle, uint channel, void *buffer, uint length, void *user);
 /* DSP callback function.
 handle : The DSP handle
 channel: Channel that the DSP is being applied to
@@ -533,7 +533,7 @@ buffer : Buffer to apply the DSP to
 length : Number of bytes in the buffer
 user   : The 'user' parameter given when calling ChannelSetDSP */
 
-def RecordProc=fn bool(uint handle,void *buffer, uint length, void *user);
+alias RecordProc=fn bool(uint handle,void *buffer, uint length, void *user);
 /* Recording callback function.
 handle : The recording handle
 buffer : Buffer containing the recorded sample data
@@ -920,7 +920,7 @@ struct Bass_FX_Volume_Param{
 	uint lCurve;
 } 
 
-def IosNotifyProc=fn void(uint status);
+alias IosNotifyProc=fn void(uint status);
 /* iOS notification callback function.
 status : The notification (BASS_IOSNOTIFY_xxx) */
 
