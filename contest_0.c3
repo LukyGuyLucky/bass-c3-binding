@@ -10,6 +10,7 @@ module contest_0;
 import libc;
 import std::thread;
 import std::time;
+import bass;
 
 
 macro sleep(x) => thread::sleep_ms(x);
